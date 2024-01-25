@@ -15,6 +15,8 @@ namespace Лабораторная_работа__9_формы
   {
     int index;
 
+    public static void DoubleParseFailMessage() => MessageBox.Show("Не удалось преобразовать ввод в тип double.", "Ошибка");
+
     public ClassObjectEditForm(int number)
     {
       InitializeComponent();
@@ -23,13 +25,21 @@ namespace Лабораторная_работа__9_формы
       WidthLabel.Text += Rectangles[index].width;
     }
 
+    public void LabelsUpdate()
+    {
+      LengthLabel.Text = "Длина: " + Rectangles[index].length;
+      WidthLabel.Text = "Ширина: " + Rectangles[index].width;
+    }
+
     private void EditLengthButton_Click(object sender, EventArgs e)
     {
       if (double.TryParse(LengthTextBox.Text, out double temp))
       {
         Rectangles[index].EditLength(temp);
-        LengthLabel.Text = "Длина: " + Rectangles[index].length;
+        LabelsUpdate();
       }
+      else
+        DoubleParseFailMessage();
     }
 
     private void EditWidthButton_Click(object sender, EventArgs e)
@@ -37,8 +47,28 @@ namespace Лабораторная_работа__9_формы
       if (double.TryParse(WidthTextBox.Text, out double temp))
       {
         Rectangles[index].EditWidth(temp);
-        WidthLabel.Text = "Ширина: " + Rectangles[index].width;
+        LabelsUpdate();
       }
+      else
+        DoubleParseFailMessage();
+    }
+
+    private void MultiplicationButton_Click(object sender, EventArgs e)
+    {
+      if (double.TryParse(MultiplicationTextBox.Text, out double temp))
+      {
+        Rectangles[index].Multiply(temp);
+        LabelsUpdate();
+      }
+      else
+        DoubleParseFailMessage();
+      //if (double.TryParse(MultiplicationTextBox.Text, out double temp))
+      //{
+      //  Rectangle.MultiplyStatic(temp, Rectangles[index]);
+      //  LabelsUpdate();
+      //}
+      //else
+      //  DoubleParseFail();
     }
   }
 }

@@ -34,6 +34,8 @@
       WidthLabel = new Label();
       EditLengthButton = new Button();
       EditWidthButton = new Button();
+      MultiplicationButton = new Button();
+      MultiplicationTextBox = new TextBox();
       SuspendLayout();
       // 
       // LengthTextBox
@@ -88,17 +90,38 @@
       EditWidthButton.UseVisualStyleBackColor = true;
       EditWidthButton.Click += EditWidthButton_Click;
       // 
+      // MultiplicationButton
+      // 
+      MultiplicationButton.Location = new Point(144, 145);
+      MultiplicationButton.Name = "MultiplicationButton";
+      MultiplicationButton.Size = new Size(75, 23);
+      MultiplicationButton.TabIndex = 7;
+      MultiplicationButton.Text = "Multiply";
+      MultiplicationButton.UseVisualStyleBackColor = true;
+      MultiplicationButton.Click += MultiplicationButton_Click;
+      // 
+      // MultiplicationTextBox
+      // 
+      MultiplicationTextBox.Location = new Point(121, 116);
+      MultiplicationTextBox.Name = "MultiplicationTextBox";
+      MultiplicationTextBox.Size = new Size(119, 23);
+      MultiplicationTextBox.TabIndex = 8;
+      // 
       // ClassObjectEditForm
       // 
       AutoScaleDimensions = new SizeF(7F, 15F);
       AutoScaleMode = AutoScaleMode.Font;
-      ClientSize = new Size(360, 134);
+      ClientSize = new Size(360, 175);
+      Controls.Add(MultiplicationTextBox);
+      Controls.Add(MultiplicationButton);
       Controls.Add(EditWidthButton);
       Controls.Add(EditLengthButton);
       Controls.Add(WidthLabel);
       Controls.Add(LengthLabel);
       Controls.Add(WidthTextBox);
       Controls.Add(LengthTextBox);
+      MaximumSize = new Size(376, 214);
+      MinimumSize = new Size(376, 214);
       Name = "ClassObjectEditForm";
       StartPosition = FormStartPosition.CenterScreen;
       Text = "Окно редактирования";
@@ -114,5 +137,7 @@
     private Label WidthLabel;
     private Button EditLengthButton;
     private Button EditWidthButton;
+    private Button MultiplicationButton;
+    private TextBox MultiplicationTextBox;
   }
 }

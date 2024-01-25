@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using static Лабораторная_работа__9_формы.Logic;
@@ -13,6 +14,7 @@ namespace Лабораторная_работа__9_формы
 
     internal double length, width;
 
+    #region edit
     public void EditLength(double len)
     {
       if (length + len > 0.00009 && length + len < 46340.95)
@@ -29,8 +31,26 @@ namespace Лабораторная_работа__9_формы
         MessageBox.Show("Полученное значение не вписывается в рамки 0.00009 < length < 46340.95. Значение сейчас: " + width);
     }
 
-    public int Count { get { return count; } }
+    public void Multiply(double multiplier)
+    {
+      if (this.length * multiplier > 0.00009 && this.length * multiplier < 46340.95 && this.width * multiplier > 0.00009 && this.width * multiplier < 46340.95)
+        (length, width) = (length * multiplier, width * multiplier);
+      else
+        MessageBox.Show("Не удаётся выполнить умножение, в виду превышения ограничения полученным значением.", "Ошибка");
+    }
 
+    public static void MultiplyStatic(double multiplier, Rectangle rect)
+    {
+      if (rect.length * multiplier > 0.00009 && rect.length * multiplier < 46340.95 && rect.width * multiplier > 0.00009 && rect.width * multiplier < 46340.95)
+        (rect.length, rect.width) = (rect.length * multiplier, rect.width * multiplier);
+      else
+        MessageBox.Show("Не удаётся выполнить умножение, в виду превышения ограничения полученным значением.", "Ошибка");
+    }
+    #endregion
+
+    public static int Count { get { return count; } }
+
+    #region Конструкторы
     public Rectangle()
     {
       length = 0.0001;
@@ -54,5 +74,6 @@ namespace Лабораторная_работа__9_формы
         MessageBox.Show("При вводе значений сторон прямоугольника возникл" + (temp == 0 ? "и ошибки. Значения были заменены минимальными." : !lenCheck ? "а ошибка. Значение длины было заменено на минимальное." : "а ошибка. Значение ширины было заменено на минимальное."), "Ошибка"); 
       count++;
     }
+    #endregion
   }
 }

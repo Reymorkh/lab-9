@@ -10,30 +10,24 @@ namespace Лабораторная_работа__9_формы
       //VarCounterTextBox.DataBindings.Add(new Binding("Text", new Rectangle(), "count"));
     }
 
-    public void ValueUpdate(int count) => VarCounterTextBox.Text = Convert.ToString(count);
-
-    #region Counter update
-    public void ClassVarInit(double length, double width) => ValueUpdate(ClassInit(length, width).Count);
-
-    public void ClassVarInit() => ValueUpdate(ClassInit().Count);
-    #endregion
+    public void ValueUpdate() => VarCounterTextBox.Text = Convert.ToString(Rectangle.Count);
 
     #region Create Rectangle Buttons
     private void CreateObjectButton_Click(object sender, EventArgs e)
     {
       if (double.TryParse(SetLengthTextBox.Text, out double length) && double.TryParse(SetWidthTextBox.Text, out double width))
       {
-        ClassVarInit(length, width);
-        int listLength = Rectangles.Count - 1;
-        RectangleListBox.Items.Add("Прямоугольник #" + (listLength + 1) + " Длина: " + Rectangles[listLength].length + " Ширина: " + Rectangles[listLength].width);
+        Rectangle rect = CreateRectangle(length, width);
+        ValueUpdate();
+        RectangleListBox.Items.Add("Прямоугольник #" + Rectangles.Count + " Длина: " + rect.length + " Ширина: " + rect.width);
       }
     }
 
     private void CreateDefaultObjectButton_Click(object sender, EventArgs e)
     {
-      ClassVarInit();
-      int listLength = Rectangles.Count - 1;
-      RectangleListBox.Items.Add("Прямоугольник #" + (listLength + 1) + " Длина: " + Rectangles[listLength].length + " Ширина: " + Rectangles[listLength].width);
+      Rectangle rect = CreateRectangle();
+      ValueUpdate();
+      RectangleListBox.Items.Add("Прямоугольник #" + Rectangles.Count + " Длина: " + rect.length + " Ширина: " + rect.width);
     }
     #endregion
 

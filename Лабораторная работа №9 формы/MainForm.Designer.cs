@@ -113,6 +113,8 @@
       Controls.Add(SetLengthTextBox);
       Controls.Add(VarCounterLabel);
       Controls.Add(VarCounterTextBox);
+      MaximumSize = new Size(556, 211);
+      MinimumSize = new Size(556, 211);
       Name = "MainForm";
       StartPosition = FormStartPosition.CenterScreen;
       Text = "Основное поле";
