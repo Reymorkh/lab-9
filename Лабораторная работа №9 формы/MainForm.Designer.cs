@@ -35,6 +35,8 @@
       CreateObjectButton = new Button();
       CreateDefaultObjectButton = new Button();
       RectangleListBox = new ListBox();
+      CopyRectangleButton = new Button();
+      InsertRectangleButton = new Button();
       SuspendLayout();
       // 
       // VarCounterTextBox
@@ -97,15 +99,37 @@
       RectangleListBox.ItemHeight = 15;
       RectangleListBox.Location = new Point(15, 27);
       RectangleListBox.Name = "RectangleListBox";
-      RectangleListBox.Size = new Size(360, 109);
+      RectangleListBox.Size = new Size(360, 139);
       RectangleListBox.TabIndex = 7;
       RectangleListBox.MouseDoubleClick += RectangleListBox_MouseDoubleClick;
+      // 
+      // CopyRectangleButton
+      // 
+      CopyRectangleButton.Location = new Point(381, 143);
+      CopyRectangleButton.Name = "CopyRectangleButton";
+      CopyRectangleButton.Size = new Size(70, 23);
+      CopyRectangleButton.TabIndex = 8;
+      CopyRectangleButton.Text = "Copy";
+      CopyRectangleButton.UseVisualStyleBackColor = true;
+      CopyRectangleButton.Click += CopyRectangleButton_Click;
+      // 
+      // InsertRectangleButton
+      // 
+      InsertRectangleButton.Location = new Point(458, 143);
+      InsertRectangleButton.Name = "InsertRectangleButton";
+      InsertRectangleButton.Size = new Size(70, 23);
+      InsertRectangleButton.TabIndex = 9;
+      InsertRectangleButton.Text = "Insert";
+      InsertRectangleButton.UseVisualStyleBackColor = true;
+      InsertRectangleButton.Click += InsertRectangleButton_Click;
       // 
       // MainForm
       // 
       AutoScaleDimensions = new SizeF(7F, 15F);
       AutoScaleMode = AutoScaleMode.Font;
       ClientSize = new Size(540, 172);
+      Controls.Add(InsertRectangleButton);
+      Controls.Add(CopyRectangleButton);
       Controls.Add(RectangleListBox);
       Controls.Add(CreateDefaultObjectButton);
       Controls.Add(CreateObjectButton);
@@ -130,5 +154,7 @@
     private Button CreateObjectButton;
     private Button CreateDefaultObjectButton;
     private ListBox RectangleListBox;
+    private Button CopyRectangleButton;
+    private Button InsertRectangleButton;
   }
 }

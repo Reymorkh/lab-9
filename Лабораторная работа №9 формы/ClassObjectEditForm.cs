@@ -21,14 +21,14 @@ namespace Лабораторная_работа__9_формы
     {
       InitializeComponent();
       index = number;
-      LengthLabel.Text += Rectangles[index].length;
-      WidthLabel.Text += Rectangles[index].width;
+      LengthLabel.Text += Rectangles[index].GetLength;
+      WidthLabel.Text += Rectangles[index].GetWidth;
     }
 
     public void LabelsUpdate()
     {
-      LengthLabel.Text = "Длина: " + Rectangles[index].length;
-      WidthLabel.Text = "Ширина: " + Rectangles[index].width;
+      LengthLabel.Text = "Длина: " + Rectangles[index].GetLength;
+      WidthLabel.Text = "Ширина: " + Rectangles[index].GetWidth;
     }
 
     private void EditLengthButton_Click(object sender, EventArgs e)
@@ -62,6 +62,9 @@ namespace Лабораторная_работа__9_формы
       }
       else
         DoubleParseFailMessage();
+      
+      // Снизу реализация через статичную функцию
+
       //if (double.TryParse(MultiplicationTextBox.Text, out double temp))
       //{
       //  Rectangle.MultiplyStatic(temp, Rectangles[index]);

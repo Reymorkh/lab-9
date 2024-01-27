@@ -12,7 +12,7 @@ namespace Лабораторная_работа__9_формы
   {
     static int count = 0;
 
-    internal double length, width;
+    private double length, width;
 
     #region edit
     public void EditLength(double len)
@@ -48,6 +48,12 @@ namespace Лабораторная_работа__9_формы
     }
     #endregion
 
+    #region GetParams
+    public double GetLength { get { return length; } }
+
+    public double GetWidth { get { return width; } }
+    #endregion
+
     public static int Count { get { return count; } }
 
     #region Конструкторы
@@ -74,6 +80,15 @@ namespace Лабораторная_работа__9_формы
         MessageBox.Show("При вводе значений сторон прямоугольника возникл" + (temp == 0 ? "и ошибки. Значения были заменены минимальными." : !lenCheck ? "а ошибка. Значение длины было заменено на минимальное." : "а ошибка. Значение ширины было заменено на минимальное."), "Ошибка"); 
       count++;
     }
+
+    public Rectangle(Rectangle rect) => (length, width) = (rect.GetLength, rect.GetWidth);
     #endregion
+
+    public static Rectangle operator ++(Rectangle rect) => new Rectangle(rect.GetLength + 1, rect.GetWidth + 1);
+    public static Rectangle operator --(Rectangle rect) => new Rectangle(rect.GetLength - 1, rect.GetWidth - 1);
+
+
+
+   // public override bool Equals(object obj) { return true; }
   }
 }

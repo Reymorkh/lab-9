@@ -1,3 +1,4 @@
+using System;
 using static Лабораторная_работа__9_формы.Logic;
 
 namespace Лабораторная_работа__9_формы
@@ -10,6 +11,14 @@ namespace Лабораторная_работа__9_формы
       //VarCounterTextBox.DataBindings.Add(new Binding("Text", new Rectangle(), "count"));
     }
 
+    public void AddValueToListBox(int index) => RectangleListBox.Items.Add("Прямоугольник #" + index + " Длина: " + Rectangles[index - 1].GetLength + " Ширина: " + Rectangles[index - 1].GetWidth);
+    
+    public void ListBoxDataReplacement(int index)
+    {
+      RectangleListBox.Items.RemoveAt(index);
+      RectangleListBox.Items.Insert(index, "Прямоугольник #" + (index + 1) + " Длина: " + Rectangles[index].GetLength + " Ширина: " + Rectangles[index].GetWidth);
+    }
+
     public void ValueUpdate() => VarCounterTextBox.Text = Convert.ToString(Rectangle.Count);
 
     #region Create Rectangle Buttons
@@ -17,17 +26,17 @@ namespace Лабораторная_работа__9_формы
     {
       if (double.TryParse(SetLengthTextBox.Text, out double length) && double.TryParse(SetWidthTextBox.Text, out double width))
       {
-        Rectangle rect = CreateRectangle(length, width);
+        CreateRectangle(length, width);
         ValueUpdate();
-        RectangleListBox.Items.Add("Прямоугольник #" + Rectangles.Count + " Длина: " + rect.length + " Ширина: " + rect.width);
+        AddValueToListBox(Rectangles.Count);
       }
     }
 
     private void CreateDefaultObjectButton_Click(object sender, EventArgs e)
     {
-      Rectangle rect = CreateRectangle();
+      CreateRectangle();
       ValueUpdate();
-      RectangleListBox.Items.Add("Прямоугольник #" + Rectangles.Count + " Длина: " + rect.length + " Ширина: " + rect.width);
+      AddValueToListBox(Rectangles.Count);
     }
     #endregion
 
@@ -39,9 +48,27 @@ namespace Лабораторная_работа__9_формы
         ClassObjectEditForm f = new ClassObjectEditForm(index);
         f.ShowDialog();
         f.Dispose();
-        RectangleListBox.Items.RemoveAt(index);
-        RectangleListBox.Items.Insert(index, "Прямоугольник #" + (index + 1) + " Длина: " + Rectangles[index].length + " Ширина: " + Rectangles[index].width);
+        ListBoxDataReplacement(index);
       }
+    }
+
+    private void CopyRectangleButton_Click(object sender, EventArgs e)
+    {
+      int temp = RectangleListBox.SelectedIndex;
+      if (temp != -1)
+        CopyIndex = temp;
+    }
+
+    private void InsertRectangleButton_Click(object sender, EventArgs e)
+    {
+      int temp = RectangleListBox.SelectedIndex;
+      if (CopyIndex != -1 && temp != CopyIndex)
+      {
+        Rectangles[temp] = new Rectangle(Rectangles[CopyIndex]);
+        ListBoxDataReplacement(temp);
+        CopyIndex = -1;
+      }
+
     }
   }
 }

@@ -10,19 +10,18 @@ namespace Лабораторная_работа__9_формы
   public static class Logic
   {
     public static List<Rectangle> Rectangles = new List<Rectangle>();
+    public static int CopyIndex = -1;
 
-    public static Rectangle CreateRectangle(double length, double width)
+    public static void CreateRectangle(double length, double width)
     {
       Rectangle rect = new Rectangle(length, width);
       Rectangles.Add(rect);
-      return rect;
     }
 
-    public static Rectangle CreateRectangle()
+    public static void CreateRectangle()
     {
       Rectangle rect = new Rectangle();
       Rectangles.Add(rect);
-      return rect;
     }
 
     public static bool ParamCheck(double par)
